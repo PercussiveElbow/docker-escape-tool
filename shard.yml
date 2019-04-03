@@ -1,0 +1,13 @@
+name: docker-escape
+version: 0.1.0
+
+authors:
+  - your-name-here <your-email-here>
+
+targets:
+  docker-escape:
+    main: src/docker-escape.cr
+
+crystal: 0.27.2
+
+license: MIT
