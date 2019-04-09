@@ -63,21 +63,11 @@ def breakout
     unix_socket_breakout
     exit()
   end
-  if is_net_mode_host?
+  if is_net_mode_host? && is_docker_net_socket_reachable?
     puts("blah")
+    
   end
-end
-
-def is_net_mode_host?
-  net_mode_host=false
-  interfaces = NetSample::NIC.ifnames
-  interfaces.each do | interface |
-    if interface.includes? "docker" 
-      puts("We're sharing the host network stack. It's worth nmap scanning localhost. We'll check for docker ports on 3275/6 now")
-      net_mode_host=true
-    end
-  end
-  net_mode_host
+  exit()
 end
 
 main()
