@@ -1,4 +1,3 @@
-require "http/client"
 require "./checks/*"
 require "./utils/*"
 require "./breakouts/*"
@@ -35,20 +34,15 @@ puts %q{
     888 Y88..88PY88..88P888 
     888   Y88P    Y88P  888}
 
-lib LibC
-  fun getuid : Int
-end
-
 def main
   user_namespace_enabled=false
   container=in_container?
   if ARGV.size>0 && ARGV[0].to_s =="escape"
     breakout()
   elsif ARGV.size>0
-    puts "Usage"
+    usage
   end
 end
-
 
 def usage 
   puts("Docker Escape Tool\nUsage:")
@@ -61,13 +55,11 @@ def breakout
 
   if unix_socket_present?
     unix_socket_breakout
-    exit()
   end
-  if is_net_mode_host? && is_docker_net_socket_reachable?
-    puts("blah")
-    
+  if is_net_socket_present?
+    puts("Net socket breakout")
+    #net_socket_breakout
   end
-  exit()
 end
 
 main()
