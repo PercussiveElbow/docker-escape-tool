@@ -31,35 +31,29 @@ def is_net_socket_present?
 end
 
 def check_interface_for_socket(ip)
-  check_http_socket(ip)
-  check_https_socket(ip)
+  check_network_socket("http://#{ip}:2375/")
+  check_network_socket("https://#{ip}:2376/")
 end
 
-def check_http_socket(ip)
-  url="http://#{ip}:2375/containers/json"
+def check_network_socket(base_url)
+  url= base_url + "containers/json"
 
   begin 
     resp = HTTP::Client.get(url)
     if resp != nil && resp.status_code == 200 && !resp.body.empty?
-      puts("Docker daemon possibly found on http://#{ip}:2375")
+      puts("Docker daemon possibly found on #{base_url}")
+      print_network_socket_banner
+      network_socket_breakout(base_url)
     else
       raise("")
     end
   rescue
-    puts("Couldn't find docker daemon on http://#{ip}:2375")
+    puts("Couldn't find docker daemon on #{base_url}")
   end
 end
 
-def check_https_socket(ip)
-  url = "https://#{ip}:2376/containers/json"
-  begin
-    resp = HTTP::Client.get(url)
-    if resp != nil && resp.status_code == 200 && !resp.body.empty?
-      puts("Docker daemon possibly found on https://#{ip}:2376")
-    else
-      raise("")
-    end
-  rescue 
-    puts("Couldn't find docker daemon on https://#{ip}:2376")
-  end
+def print_network_socket_banner
+  puts("\n================================================")
+  puts("========= Docker Network Socket Present ========".green)
+  puts("================================================")
 end
