@@ -53,13 +53,14 @@ def breakout
   puts("======= Start common breakout techniques =======")
   puts("================================================")
 
+
+  if device_check
+    device_breakout
+  end
   if unix_socket_present?
     unix_socket_breakout
   end
-  if is_net_socket_present?
-    puts("Net socket breakout")
-    #net_socket_breakout
-  end
+  is_network_socket_present?
 end
 
 main()

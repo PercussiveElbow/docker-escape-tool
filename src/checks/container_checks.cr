@@ -67,18 +67,3 @@ def processes_like_docker?
   puts("•  Common init found.")
   false
 end
-
-def device_check
-  # Device checks
-  puts("\n==> Check for devices.")
-  dev_files = Dir.new("/dev")
-
-  #if dev_files.len() > 16
-  block_devices = [] of String
-  puts("? More devices than usual found. Checking for block storage devices:")
-  dev_files.each do |device|
-    if device.to_s.includes?("sda")
-      puts(device)
-    end
-  end
-end

@@ -17,7 +17,7 @@ def is_net_mode_host?
     false
 end
 
-def is_net_socket_present?
+def is_network_socket_present?
   is_net_mode_host?
 
   interfaces = NetSample::NIC.ifnames

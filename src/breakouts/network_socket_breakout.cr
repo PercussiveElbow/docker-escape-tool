@@ -7,7 +7,7 @@ def network_socket_breakout(ip)
     puts("Created container: #{id}")
     start_breakout_container(ip,id)
     puts("Started container: #{id}")
-    puts("We've started a privileged container with the host OS filesystem mounted. ")
+    puts("We've started a privileged container with the host OS filesystem mounted. ".green())
     handle_input(ip,id)
     exit()
 end
