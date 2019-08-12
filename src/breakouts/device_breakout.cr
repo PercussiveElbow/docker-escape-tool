@@ -21,8 +21,11 @@ def device_breakout
             puts(directory_string)
             proc_found = true if directory_string.includes?("proc")
         end
-
-        puts("This looks like the host filesystem".green()) if proc_found
+        if proc_found
+            puts("This looks like the host filesystem".green())
+            puts("Chrooting the filesystem")
+            system("chroot /mounted_hostos") # need to add uid 0 and chroot check
+        end
     else
         puts("Failed to mount the root device")
     end

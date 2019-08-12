@@ -1,27 +1,38 @@
-# docker-escape
+# Docker Escape Tool
 
-TODO: Write a description here
+WIP
 
-## Installation
+This is a quick script to identify if you're in a Docker container and try some quick escape techniques. 
 
-TODO: Write installation instructions here
+## Todo
+* Refactor literally everything.
+* Move from relying on libcurl to Crystal's inbuilt networking once it gains support for unix sockets.
+* Improve installing Docker inside a container because currently I'm wgetting a binary lol. 
+
+## Checks
+This script assesss if you're in a container through the following:
+* Presence of .dockerenv/.dockerinit files
+* Mentions of Docker in cgroups
+* Weird PID 1 (i.e. not an init)
+
+### To add:
+* Lack of hardware related processes
+## Breakout techniques
+
+* Mounted Docker unix socket.
+* Reachable Docker network socket.
+* Mountable devices (e.g. host / disk)
+
+#### To add:
+* CVE-2019-5736
+* Enumerate containers within the same Docker network to pivot
+
 
 ## Usage
 
-TODO: Write usage instructions here
+Use a prebuilt binary from the [releases]("/releases") page or compile yourself with:
 
-## Development
-
-TODO: Write development instructions here
-
-## Contributing
-
-1. Fork it (<https://github.com/your-github-user/docker-escape/fork>)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-## Contributors
-
-- [your-name-here](https://github.com/your-github-user) - creator and maintainer
+```
+crystal build src/docker-escape.cr
+```
+Then just run the compiled binary in your container. 
