@@ -1,5 +1,6 @@
 require "./checks/*"
 require "./utils/*"
+require "./checks/main_check"
 require "./breakouts/*"
 
 puts %q{
@@ -33,6 +34,7 @@ puts %q{
     888 888  888888  888888 
     888 Y88..88PY88..88P888 
     888   Y88P    Y88P  888}
+puts("\nMil0Sec - https://github.com/PercussiveElbow")
 
 def main
   user_namespace_enabled=false
@@ -62,6 +64,7 @@ def breakout
   end
   url = find_network_socket
   if url && url.size>0
+    #list_running_containers(url)
     dump_docker_secrets(url)
     network_socket_breakout(url)
   end
