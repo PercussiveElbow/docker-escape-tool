@@ -4,7 +4,7 @@
 
 WIP
 
-This is a quick script to identify if you're in a Docker container and try some quick escape techniques. 
+This tool will help identify if you're in a Docker container and try some quick escape techniques. 
 
 ## Todo
 * Refactor literally everything.
@@ -21,20 +21,25 @@ This script assesss if you're in a container through the following:
 * Lack of hardware related processes
 ## Breakout techniques
 
-* Mounted Docker unix socket.
+* Mounted Docker UNIX socket.
 * Reachable Docker network socket.
 * Mountable devices (e.g. host / disk)
 
 #### To add:
 * CVE-2019-5736
+* CVE-2019-14271 
 * Enumerate containers within the same Docker network to pivot
 
+## Additional 
+* Port scans if it appears the container shares the host network namespace.
 
 ## Usage
 
-Use a prebuilt binary from the [releases]("/releases") page or compile yourself with:
+Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself with Crystal 0.31.1 or higher:
 
 ```
-crystal build src/docker-escape.cr
+crystal build -Dpreview_mt src/docker-escape.cr
 ```
+
+
 Then just run the compiled binary in your container. 
