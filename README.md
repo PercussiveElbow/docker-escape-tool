@@ -16,9 +16,8 @@ This script assesss if you're in a container through the following:
 * Presence of .dockerenv/.dockerinit files
 * Mentions of Docker in cgroups
 * Weird PID 1 (i.e. not an init)
-
-### To add:
 * Lack of hardware related processes
+
 ## Breakout techniques
 
 * Mounted Docker UNIX socket.
