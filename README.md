@@ -1,6 +1,6 @@
 # Docker Escape Tool
 
-[![Actions Status](https://github.com/PercussiveElbow/docker-escape-tool/workflows/main/badge.svg)](https://github.com/PercussiveElbow/docker-escape-tool/actions)
+[![Actions Status](https://github.com/PercussiveElbow/docker-escape-tool/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/PercussiveElbow/docker-escape-tool/actions)
 
 WIP
 
