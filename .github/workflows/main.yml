@@ -16,6 +16,7 @@ jobs:
       id: build
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@master
+      id: tagrelease
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
@@ -24,8 +25,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{github.ref}}
-        release_name: Release ${{github.ref}}
+        tag_name: ${{steps.tagrelease.new_tag}}
+        release_name: Release  ${{steps.tagrelease.new_tag}}
         draft: false
         prerelease: false
     - name: Upload Release Asset
