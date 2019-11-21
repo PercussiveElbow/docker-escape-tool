@@ -1,4 +1,8 @@
 FROM crystallang/crystal
+RUN useradd -ms /bin/bash notroot
 COPY ./ /breakout
 WORKDIR /breakout
-ENTRYPOINT crystal run src/docker-escape.cr -- escape
+RUN chown -R notroot:notroot /breakout
+USER notroot
+RUN crystal build -Dpreview_mt --error-trace src/docker-escape.cr
+ENTRYPOINT ./docker-escape escape 

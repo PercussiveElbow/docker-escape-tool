@@ -8,6 +8,6 @@ targets:
   docker-escape:
     main: src/docker-escape.cr
 
-crystal: 0.27.2
+crystal: 0.31.1
 
 license: MIT

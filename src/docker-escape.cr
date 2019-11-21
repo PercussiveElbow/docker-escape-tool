@@ -45,7 +45,7 @@ def main
 end
 
 def usage 
-  puts("Docker Escape Tool\nUsage:")
+  puts("Docker Escape Tool\nUsage:\n\".\\docker_escape escape\" to attempt escape")
 end
 
 def breakout
@@ -60,7 +60,11 @@ def breakout
   if unix_socket_present?
     unix_socket_breakout
   end
-  is_network_socket_present?
+  url = find_network_socket
+  if url && url.size>0
+    dump_docker_secrets(url)
+    network_socket_breakout(url)
+  end
 end
 
 main()

@@ -1,0 +1,15 @@
+name: Crystal CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: shards install
+    - name: Build
+      run: rystal build -Dpreview_mt --error-trace src/docker-escape.cr

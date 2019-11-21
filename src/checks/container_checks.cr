@@ -1,3 +1,4 @@
+
 def in_container?
   print_banner
   container=false
@@ -6,6 +7,7 @@ def in_container?
   checks << docker_env_init_file_present?
   checks << docker_in_cgroups?
   checks << processes_like_docker?
+  checks << hardware_processes_present?
 
   checks.each do |check|
     if check
@@ -49,7 +51,7 @@ def docker_in_cgroups?
 end
 
 def processes_like_docker?
-  puts("\n==> Check for processes.")
+  puts("\n==> Check for init process.")
   processes = `ps aux`
   init_process =processes.split("\n")[1]
 
@@ -67,3 +69,22 @@ def processes_like_docker?
   puts("•  Common init found.")
   false
 end
+
+def hardware_processes_present?
+    puts("\n==> Check for hardware processes.")
+    processes = `ps aux`
+    processes_split = processes.split("\n")
+    hardware_processes= ["kthreadd","kswapd0","watchdog"]
+
+    processes_split.each do |process_to_check| 
+      hardware_processes.each do |hw_process|
+        if process_to_check.to_s.includes?(hw_process)
+          print("•  Hardware related process found: #{hw_process}")
+          return false
+        end
+      end
+    end
+    puts("• No hardware related processes found.") 
+    true
+end
+  
