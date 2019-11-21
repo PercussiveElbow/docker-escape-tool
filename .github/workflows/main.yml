@@ -13,13 +13,14 @@ jobs:
       run: shards install
     - name: Build
       run: crystal build -Dpreview_mt --error-trace src/docker-escape.cr
+      id: build
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: latestbuild
+        tag_name: ${{ steps.build.outputs.time }}
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
