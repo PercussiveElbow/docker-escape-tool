@@ -16,17 +16,18 @@ jobs:
       id: build
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@master
-      id: tagrelease
+      id: ver_tag
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEFAULT_BUMP: patch 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{github.ref}}
-        release_name: Release  ${{github.ref}}
+        tag_name: ${{ steps.ver_tag.outputs.new_tag }}
+        release_name: ${{ steps.ver_tag.outputs.new_tag }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
