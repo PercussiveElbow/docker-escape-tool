@@ -1,5 +1,7 @@
 # Docker Escape Tool
 
+[![Actions Status](https://github.com/PercussiveElbow/docker-escape-tool/workflows/main/badge.svg)](https://github.com/PercussiveElbow/docker-escape-tool/actions)
+
 WIP
 
 This is a quick script to identify if you're in a Docker container and try some quick escape techniques. 
