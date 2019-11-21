@@ -12,4 +12,4 @@ jobs:
     - name: Install dependencies
       run: shards install
     - name: Build
-      run: rystal build -Dpreview_mt --error-trace src/docker-escape.cr
+      run: crystal build -Dpreview_mt --error-trace src/docker-escape.cr
