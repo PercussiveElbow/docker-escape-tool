@@ -1,6 +1,6 @@
 require "file_utils"
-require "../utils/user_privilege_check"
-require "../checks/main_check"
+#require "../../utils/*"
+#require "../../checks/*"
 
 def device_breakout
     device_breakout_banner()

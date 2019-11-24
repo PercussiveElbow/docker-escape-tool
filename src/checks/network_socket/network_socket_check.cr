@@ -1,7 +1,7 @@
 require "uri"
 require "http/client"
-require "../../utils/net_sample"
-require "../../utils/port_scan"
+require "../../utils/network/net_sample"
+require "../../utils/network/port_scan"
 require "socket"
 
 
@@ -58,7 +58,7 @@ def check_for_docker_network_socket(base_url)
   begin 
     resp = HTTP::Client.get(url)
     if resp != nil && resp.status_code == 200 && !resp.body.empty?
-      puts("•  Docker daemon possibly found on #{base_url}".green)
+      puts("•  Docker Daemon possibly found on #{base_url}".green)
       return base_url
     else
       return ""

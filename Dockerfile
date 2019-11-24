@@ -5,4 +5,4 @@ WORKDIR /breakout
 RUN chown -R notroot:notroot /breakout
 USER notroot
 RUN crystal build -Dpreview_mt --error-trace src/docker-escape.cr
-ENTRYPOINT ./docker-escape escape 
+ENTRYPOINT ./docker-escape auto 

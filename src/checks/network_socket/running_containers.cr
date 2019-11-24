@@ -9,7 +9,6 @@ def list_running_containers(ip)
             if containers.size>0
                 containers.each do |container|
                     puts("\nContainer: #{container}")
-
                 end
             end
         else
