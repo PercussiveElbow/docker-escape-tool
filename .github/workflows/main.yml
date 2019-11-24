@@ -12,7 +12,7 @@ jobs:
     - name: Install dependencies
       run: shards install
     - name: Build
-      run: crystal build -Dpreview_mt --error-trace src/docker-escape.cr
+      run: crystal build -Dpreview_mt --error-trace --release src/docker-escape.cr
       id: build
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@master
