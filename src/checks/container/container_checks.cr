@@ -1,6 +1,6 @@
 
 def in_container?
-  print_banner
+  section_banner("Check if we're in a container")
   container=false
 
   checks = [] of Bool
@@ -16,13 +16,10 @@ def in_container?
     end
   end
   
-  container_print = container ? "========== We're in a container ================".green : "======== We're not in a container ==============".red
-  puts("\n================================================\n" + container_print + "\n================================================\n")
+  if container
+    section_banner_green("We're in a container")
+  else
+    section_banner_red("We're not in a container")
+  end
   container
-end
-
-def print_banner
-  puts("\n================================================")
-  puts("=========Check if we're in a container==========")
-  puts("================================================")
 end

@@ -1,7 +1,7 @@
 require "socket"
 
 def basic_port_scan(ip)
-  total_ports=65000
+  total_ports=65532
   split = 4
   puts("•  Commencing port scan of #{ip} interface: Ports 1-#{total_ports} across #{split} workers.")
 
@@ -24,15 +24,14 @@ def basic_port_scan(ip)
 end
 
 def scan_chunk(channel,ip,start,finish)
-(start..finish).each do |port|
-  begin
-    sock = Socket.tcp(Socket::Family::INET)
-    sock.connect(ip, port)
-    puts("•  Port open on interface #{ip}: #{port}\n")
-    channel.send(nil)
-  rescue ex
-    channel.send(nil)
+  (start..finish).each do |port|
+    begin
+      sock = Socket.tcp(Socket::Family::INET)
+      sock.connect(ip, port)
+      puts("•  Port open on interface #{ip}: #{port}\n")
+      channel.send(nil)
+    rescue ex
+      channel.send(nil)
+    end
   end
-end
-
 end

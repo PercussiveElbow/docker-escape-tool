@@ -2,7 +2,7 @@ require "http"
 require "json"
 
 def network_socket_breakout(ip)
-    print_network_socket_breakout_banner()
+    section_banner_green("Network Socket Breakout")
     id = create_breakout_container(ip)
     puts("==> Created container: #{id}")
     start_breakout_container(ip,id)
@@ -92,11 +92,4 @@ def cleanup_container(ip,id)
     rescue e
         puts("•  Error occured attempting deletion of container #{id}\n#{e}".red)
     end
-end
-
-
-def print_network_socket_breakout_banner
-    puts("\n================================================")
-    puts("===========  Network Socket Breakout ===========".green)
-    puts("================================================")
 end

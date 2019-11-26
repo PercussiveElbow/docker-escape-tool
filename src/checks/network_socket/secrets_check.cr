@@ -1,7 +1,6 @@
 
-
 def dump_docker_secrets(ip)
-    print_docker_secrets_dump()
+    section_banner_green("Dump Docker Secrets")
     begin 
         resp = HTTP::Client.get("#{ip}secrets",  headers: HTTP::Headers{"Content-Type"=> "application/json"})
         if resp != nil && resp.status_code == 201 && !resp.body.empty?
@@ -13,10 +12,4 @@ def dump_docker_secrets(ip)
     rescue e
       puts(e)
     end
-end
-
-def print_docker_secrets_dump
-    puts("\n================================================")
-    puts("============== Dump Docker Secrets =============".green)
-    puts("================================================")
 end

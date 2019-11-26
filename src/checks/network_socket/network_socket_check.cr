@@ -17,7 +17,7 @@ def is_net_mode_host?
 end
 
 def find_network_socket
-  network_socket_check()
+  section_banner("Checking Network Socket")
   is_net_mode_host?
   url = ""
   interfaces = NetSample::NIC.ifnames
@@ -31,12 +31,12 @@ def find_network_socket
     puts "==> Finished checking network interface #{interface} #{ip}"
 
     if url && url.size > 0
-      network_socket_check_finished()
+      section_banner("Done Checking Network Socket")
       return url
     end
 
   end
-  network_socket_check_finished()
+  section_banner("Done Checking Network Socket")
   return ""
 end
 
@@ -67,16 +67,4 @@ def check_for_docker_network_socket(base_url)
     puts("•  Couldn't find Docker Daemon running on #{base_url}".red)
     return ""
   end
-end
-
-def network_socket_check
-  puts("\n================================================")
-  puts("=========== Checking Network Socket  ===========")
-  puts("================================================")
-end
-
-def network_socket_check_finished
-  puts("\n================================================")
-  puts("========= Done Checking Network Socket  ========")
-  puts("================================================")
 end

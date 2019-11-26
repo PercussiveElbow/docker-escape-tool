@@ -1,6 +1,6 @@
 
 def list_running_containers(ip)
-    running_containers_banner()
+    section_banner_green("List running containers")
     begin 
         resp = HTTP::Client.get("#{ip}containers/json",  headers: HTTP::Headers{"Content-Type"=> "application/json"})
         if resp != nil && resp.status_code == 200 && !resp.body.empty?
@@ -17,10 +17,4 @@ def list_running_containers(ip)
     rescue e
       puts(e)
     end
-end
-
-def running_containers_banner
-    puts("\n================================================")
-    puts("============== List running containers =============".green)
-    puts("================================================")
 end

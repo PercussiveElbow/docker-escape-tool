@@ -1,9 +1,7 @@
 require "file_utils"
-#require "../../utils/*"
-#require "../../checks/*"
 
 def device_breakout
-    device_breakout_banner()
+    section_banner_green("Mounted Device Breakout")
     cmdline = File.read("/proc/cmdline")
     root_uuid= cmdline.split("root=").last.split(" ").first().sub("UUID=","")
     puts("•  Root device UUID: #{root_uuid}")
@@ -29,6 +27,7 @@ def device_breakout
                 puts("This looks like the host filesystem".green())
                 puts("Chrooting the filesystem")
                 system("chroot /mounted_hostos") # need to add uid 0 and chroot check
+                exit()
             end
         else
             puts("Failed to mount the root device")
@@ -36,10 +35,4 @@ def device_breakout
     else
         puts("•  Not root, can't attempt mounting #{root_uuid}".red)
     end
-end
-
-def device_breakout_banner
-    puts("\n================================================")
-    puts("===========  Mounted Device Breakout ===========".green)
-    puts("================================================")
 end

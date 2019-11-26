@@ -7,29 +7,52 @@ def main
 
   #user_namespace_enabled=false
   
-  if ARGV.size>0 && ARGV[0].to_s =="auto"
-    container=in_container?
-    breakout()
-  elsif ARGV.size>0 && ARGV[0].to_s =="check"
-    container=in_container?
+  if ARGV.size>0 
+    case ARGV[0].to_s
+    when "check"
+      in_container?
+      auto()
+    when "auto"
+      in_container?
+      auto()
+    when "unix"
+      attempt_unix_socket_breakout()
+    when "network"
+      attempt_network_socket_breakout()
+    when "device"
+      attempt_device_breakout()
+    else
+      usage()
+    end
   else
     usage()
   end
 end
 
-def breakout
+
+def auto
   puts("\n================================================")
   puts("======= Start common breakout techniques =======")
   puts("================================================")
+  
+  attempt_device_breakout()
+  attempt_unix_socket_breakout()
+  attempt_network_socket_breakout()
+end
 
+def attempt_device_breakout()
   if device_check
     device_breakout
   end
-  
+end
+
+def attempt_unix_socket_breakout()
   if unix_socket_present?
     unix_socket_breakout
   end
-  
+end
+
+def attempt_network_socket_breakout()
   url = find_network_socket
 
   if url && url.size>0

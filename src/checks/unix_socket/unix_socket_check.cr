@@ -2,9 +2,9 @@
 def unix_socket_present?
     present=File.exists?("/var/run/docker.sock")
     if present
-      puts("\n================================================")
-      puts("========== Docker UNIX Socket Present ==========".green)
-      puts("================================================")
+      section_banner_green("Docker UNIX Socket Present")
+    else
+      section_banner_red("Docker UNIX Socket Not Present")
     end
     present
 end
