@@ -4,9 +4,8 @@ require "./breakouts/*"
 
 def main
   logo()
+  #user_namespace_enabled=false  
 
-  #user_namespace_enabled=false
-  
   if ARGV.size>0 
     case ARGV[0].to_s
     when "check"
@@ -38,11 +37,18 @@ def auto
   attempt_device_breakout()
   attempt_unix_socket_breakout()
   attempt_network_socket_breakout()
+  attempt_capability_breakout()
 end
 
 def attempt_device_breakout()
   if device_check
     device_breakout
+  end
+end
+
+def attempt_capability_breakout()
+  if capability_check
+    puts("Capability breakout not implemented")
   end
 end
 
