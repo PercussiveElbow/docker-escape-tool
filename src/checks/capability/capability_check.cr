@@ -64,11 +64,14 @@ def capability_parse(cap_string)
     present_caps.each do |present_cap|
         puts("•  #{present_cap}")
     end
+
+    present_caps
 end
 
 def capability_load
     if File.exists?("/proc/self/status")
         self_proc_status = File.new("/proc/self/status").gets_to_end
+        puts(self_proc_status)
 
         self_proc_status_contents =  self_proc_status.split("\n")
 

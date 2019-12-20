@@ -12,8 +12,10 @@ jobs:
     - name: Install dependencies
       run: shards install
     - name: Build
-      run: crystal build -Dpreview_mt --error-trace --release src/docker-escape.cr
+      run: crystal build -Dpreview_mt --error-trace --static --release src/docker-escape.cr
       id: build
+    - name: Tests
+      run: crystal spec
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@master
       id: ver_tag
@@ -39,4 +41,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }} 
         asset_path: ./docker-escape
         asset_name: docker-escape
-        asset_content_type: application/octet-stream 
+        asset_content_type: application/octet-stream

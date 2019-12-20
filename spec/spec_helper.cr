@@ -1,2 +1,2 @@
 require "spec"
-require "../src/docker-escape"
+require "../src/utils/interface/colorize"
