@@ -12,7 +12,7 @@ jobs:
     - name: Install dependencies
       run: shards install
     - name: Build
-      run: crystal build -Dpreview_mt --error-trace --static --release src/docker-escape.cr
+      run: crystal build -Dpreview_mt --error-trace --release src/docker-escape.cr
       id: build
     - name: Tests
       run: crystal spec
