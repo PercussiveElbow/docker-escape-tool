@@ -1,6 +1,6 @@
 require "uri"
 require "http/client"
-require "../../utils/network/net_sample"
+#require "../../utils/network/net_sample"
 require "../../utils/network/port_scan"
 require "socket"
 

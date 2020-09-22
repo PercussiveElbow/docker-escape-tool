@@ -36,6 +36,7 @@ Additionally, if the tool will conduct a quick port scan of available interfaces
 Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself with Crystal 0.31.1 or higher:
 
 ```
+shards install
 crystal build -Dpreview_mt src/docker-escape.cr
 ```
 
