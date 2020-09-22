@@ -1,6 +1,7 @@
 require "./utils/*"
 require "./checks/*"
 require "./breakouts/*"
+require "net_sample"
 
 def main
   logo()

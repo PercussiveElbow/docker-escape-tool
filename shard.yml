@@ -1,5 +1,5 @@
 name: docker-escape
-version: 0.1.0
+version: 0.1.1
 
 authors:
   - your-name-here <your-email-here>
@@ -8,6 +8,10 @@ targets:
   docker-escape:
     main: src/docker-escape.cr
 
-crystal: 0.31.1
+dependencies:
+  net_sample:
+    github: arcage/net_sample.cr
+
+crystal: 0.35.1
 
 license: MIT
