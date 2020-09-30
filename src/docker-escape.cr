@@ -2,6 +2,7 @@ require "./utils/*"
 require "./checks/*"
 require "./breakouts/*"
 require "net_sample"
+require "docker"
 
 def main
   logo()
@@ -55,17 +56,19 @@ end
 
 def attempt_unix_socket_breakout()
   if unix_socket_present?
-    unix_socket_breakout
+    socket_breakout("/var/run/docker.sock")
   end
 end
 
 def attempt_network_socket_breakout()
-  url = find_network_socket
+  host_and_port = find_network_socket()
 
-  if url && url.size>0
-    #list_running_containers(url)
-    dump_docker_secrets(url)
-    network_socket_breakout(url)
+  if host_and_port
+    if host_and_port.size()>0
+      # list_running_containers(url)
+      # dump_docker_secrets(host_and_port)
+      socket_breakout(host_and_port[0].to_s,host_and_port[1].to_i)
+    end
   end
 end
 
