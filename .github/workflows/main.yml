@@ -5,14 +5,15 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     container:
-      image: crystallang/crystal
+      image: crystallang/crystal:nightly-alpine-build
     steps:
     - uses: actions/checkout@v1
     - name: Install dependencies
-      run: shards install
+      run: shards install --ignore-crystal-version
     - name: Build
-      run: crystal build -Dpreview_mt --error-trace --release src/docker-escape.cr
+      run: crystal build --static --error-trace --release src/docker-escape.cr
       id: build
     - name: Tests
       run: crystal spec

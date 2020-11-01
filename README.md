@@ -6,11 +6,6 @@ WIP
 
 This tool will help identify if you're in a Docker container and try some quick escape techniques. 
 
-## Todo
-* Refactor.
-* Move from relying on libcurl to Crystal's inbuilt networking once it gains support for UNIX sockets.
-* Improve installing the Docker client inside a container because currently I'm downloading a binary. 
-
 ## Checks
 This script assesss if you're in a container through the following checks:
 * Presence of .dockerenv/.dockerinit files

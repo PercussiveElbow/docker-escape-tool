@@ -1,17 +1,21 @@
 name: docker-escape
-version: 0.1.1
+version: 0.1.2
 
 authors:
-  - your-name-here <your-email-here>
+  - mil0 (mil0.io)
 
 targets:
   docker-escape:
     main: src/docker-escape.cr
 
 dependencies:
+  docker:
+    github: PercussiveElbow/docker-crystal
+    branch: master
   net_sample:
-    github: arcage/net_sample.cr
-
-crystal: 0.35.1
+    github: PercussiveElbow/net_sample.cr
+    branch: master
+      
+crystal: 0.35.1 #targeting 1.0
 
 license: MIT
