@@ -13,7 +13,8 @@ dependencies:
     github: PercussiveElbow/docker-crystal
     branch: master
   net_sample:
-    github: arcage/net_sample.cr
+    github: PercussiveElbow/net_sample.cr
+    branch: master
       
 crystal: 0.35.1 #targeting 1.0
 
