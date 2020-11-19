@@ -18,17 +18,17 @@ This script assesss if you're in a container through the following checks:
 * Mounted Docker UNIX socket.
 * Reachable Docker network socket (on both default port 2375/2376).
 * Mountable devices (e.g. host / disk)
+* CVE-2019-5736
 
 Additionally, if the tool will conduct a quick port scan of available interfaces if the container appears to share the host network namespace.
 
 #### To add:
-* CVE-2019-5736
 * CVE-2019-14271 
 * Ability to enumerate containers within the same Docker network to pivot.
 
 ## Building
 
-Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself with Crystal 0.31.1 or higher:
+Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself with Crystal (nightly):
 
 ```
 shards install
@@ -38,9 +38,19 @@ crystal build -Dpreview_mt src/docker-escape.cr
 ## Usage
 
 ```
-.\docker_escape            Display usage information.
-.\docker_escape check      Determine if the environment is a Docker container.
-.\docker_escape auto       Attempt automatic escape. If successful this starts a privileged container with the host drive mounted at /hostOS.
+.\docker_escape                             Display usage information.
+
+Checks:
+.\docker_escape check                       Determine if the environment is a Docker container.
+
+Automatic escape:
+.\docker_escape auto                        Attempt automatic escape. If successful this starts a privileged container with the host drive mounted at /hostOS.
+
+Manual escape techniques:
+.\docker_escape unix                        Attempt an escape using a mounted Docker UNIX socket located at /var/run/docker.sock
+.\docker_escape network                     Attempt to escape via Docker TCP socket if found on any interfaces. Port scans if network namespace shared with host.
+.\docker_escape device                      Attempt to mount and chroot host OS filesystem. (i.e. if container uses --privileged or --device)
+.\docker_escape cve-2019-5736  <payload>    Attempt CVE-2019-5736 (runC escape). If successful, this will trigger when a user runs an EXEC command and will corrupt the host runC binary.
 ```
 
 ## License
