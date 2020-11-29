@@ -24,6 +24,7 @@ Additionally, if the tool will conduct a quick port scan of available interfaces
 
 #### To add:
 * CVE-2019-14271 
+* Capability based breakouts (CAP_SYS_ADMIN,CAP_SYS_MODULE etc.)
 * Ability to enumerate containers within the same Docker network to pivot.
 
 ## Building
