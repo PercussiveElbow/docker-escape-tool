@@ -7,7 +7,7 @@ WIP
 This tool will help identify if you're in a Docker container and try some quick escape techniques. 
 
 ## Checks
-This script assesss if you're in a container through the following checks:
+This script assesses if you're in a container through the following checks:
 * Presence of .dockerenv/.dockerinit files
 * Mentions of Docker in cgroups
 * Unusual PID 1 process (i.e. not an ordinary init process)
