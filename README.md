@@ -72,12 +72,14 @@ Additionally, if the tool will conduct a quick port scan of available interfaces
 
 ## Building
 
-Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself with Crystal (nightly):
+Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself using the supplied Dockerfile using Crystal nightly on Alpine.
 
 ```
 shards install
-crystal build -Dpreview_mt src/docker-escape.cr
+crystal build  --static src/docker-escape.cr
 ```
+
+
 
 ## Usage
 
