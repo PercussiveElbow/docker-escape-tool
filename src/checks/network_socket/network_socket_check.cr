@@ -69,7 +69,7 @@ def check_for_docker_network_socket(path, port, tls)
         else
             client = HTTP::Client.new(uri)
         end
-        client = Docker::Client.new(path,port)
+        client = Docker::Client.new(path,port,false)
         client.list_containers()
         puts("•  Docker Daemon possibly found on #{return_path}".green)
         host_and_port

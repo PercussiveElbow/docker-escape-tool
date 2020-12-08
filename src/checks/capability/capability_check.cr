@@ -41,6 +41,7 @@ CAP_CONSTANTS = [
     "CAP_AUDIT_READ",       
 ]
 
+
 def capability_check
     section_banner("Capabilities Check")
     puts("==> Checking avaliable capabilities.")

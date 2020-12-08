@@ -19,7 +19,7 @@ end
 
 def setup_docker_client(socket,port) # unix socket seems tempermental - getting broken pipe exceptions. Quick fix is just to reinstantiate the client after each exec request
     if port > 0
-        client = Docker::Client.new(socket,port)
+        client = Docker::Client.new(socket,port,false)
     else
         client = Docker::Client.new(socket)
     end
