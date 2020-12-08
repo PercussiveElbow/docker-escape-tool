@@ -69,8 +69,8 @@ def capability_parse(cap_string)
 end
 
 def capability_load
-    if File.exists?("/proc/self/status")
-        self_proc_status = File.new("/proc/self/status").gets_to_end
+    if File.exists?("/proc/1/status")
+        self_proc_status = File.new("/proc/1/status").gets_to_end
         puts(self_proc_status)
 
         self_proc_status_contents =  self_proc_status.split("\n")
