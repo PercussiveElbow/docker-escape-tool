@@ -1,4 +1,6 @@
 
+## List the running containers
+## TODO: Unused currently. Replace this with the actual Docker client.
 def list_running_containers(ip)
     section_banner_green("List running containers")
     begin 
@@ -15,6 +17,6 @@ def list_running_containers(ip)
             raise("Non 200 response on Docker Containers request \n#{resp.body}")
         end
     rescue e
-      puts(e)
+        puts(e)
     end
 end

@@ -6,8 +6,8 @@ require "docker"
 
 def main
   logo()
-  #user_namespace_enabled=false  
-  if ARGV.size>0 
+  #user_namespace_enabled=false
+  if ARGV.size>0
     case ARGV[0].to_s
       when "check"
         in_container?
@@ -40,11 +40,9 @@ def main
   end
 end
 
-
+## Attempts automatic checks and breakouts if the auto flag is used
 def auto
-  puts("\n================================================")
-  puts("======= Start common breakout techniques =======")
-  puts("================================================")
+  section_banner_green("Start common breakout techniques")
   attempt_device_breakout()
   attempt_unix_socket_breakout()
   attempt_network_socket_breakout()
@@ -74,7 +72,7 @@ def attempt_network_socket_breakout()
   host_and_port = find_network_socket()
 
   if host_and_port
-    if host_and_port.size()>0
+    if host_and_port.size() > 0
       # list_running_containers(url)
       # dump_docker_secrets(host_and_port)
       socket_breakout(host_and_port[0].to_s,host_and_port[1].to_i)

@@ -7,7 +7,6 @@ def device_breakout
     puts("•  Root device UUID: #{root_uuid}")
     if root?
         puts("\n==> Trying to mount this device...")
-
         Dir.mkdir("/mounted_hostos")
         if system("mount UUID=#{root_uuid} /mounted_hostos")
             proc_found = false
@@ -19,7 +18,7 @@ def device_breakout
                 directory_string_array << directory.to_s
             end
 
-            directory_string_array.sort.each do |directory_string| 
+            directory_string_array.sort.each do |directory_string|
                 puts(directory_string)
                 proc_found = true if directory_string.includes?("proc")
             end

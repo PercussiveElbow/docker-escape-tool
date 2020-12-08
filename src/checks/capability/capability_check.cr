@@ -42,7 +42,7 @@ CAP_CONSTANTS = [
 ]
 
 def capability_check
-    section_banner("Checking Capabilities")
+    section_banner("Capabilities Check")
     puts("==> Checking avaliable capabilities.")
     cap_string = capability_load()
     capability_parse(cap_string)
@@ -98,7 +98,7 @@ def capability_load
                 end
             end
         end
-        if cap_inh 
+        if cap_inh
             return cap_inh
         end
     else

