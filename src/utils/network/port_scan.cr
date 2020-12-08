@@ -1,37 +1,37 @@
 require "socket"
 
+## Conducts a basic port scan across an interface. Doesn't do the full 65k range because I am just cba dividing
 def basic_port_scan(ip)
-  total_ports=65532
-  split = 4
-  puts("•  Commencing port scan of #{ip} interface: Ports 1-#{total_ports} across #{split} workers.")
+    total_ports=65532
+    split = 4
+    puts("•  Commencing port scan of #{ip} interface: Ports 1-#{total_ports} across #{split} workers.")
 
-  channel = Channel(Nil).new
+    channel = Channel(Nil).new
 
-  elapsed_time = Time.measure do
-    split.times do |i|
-      start = (total_ports//split)*i
-      finish = (total_ports//split)*(i+1)
-      #puts("Starting chunk #{start} to #{finish}")
-      spawn scan_chunk(channel,ip,start,finish)
+    elapsed_time = Time.measure do
+        split.times do |i|
+            start = (total_ports//split)*i
+            finish = (total_ports//split)*(i+1)
+            #puts("Starting chunk #{start} to #{finish}")
+            spawn scan_chunk(channel,ip,start,finish)
+        end
+
+        total_ports.times do
+            channel.receive
+        end
     end
-
-    total_ports.times do
-      channel.receive
-    end
-
-  end
-  puts("•  Finished port scan of #{ip} interface. Time: #{elapsed_time}")
+    puts("•  Finished port scan of #{ip} interface. Time: #{elapsed_time}")
 end
 
 def scan_chunk(channel,ip,start,finish)
-  (start..finish).each do |port|
-    begin
-      sock = Socket.tcp(Socket::Family::INET)
-      sock.connect(ip, port)
-      puts("•  Port open on interface #{ip}: #{port}\n")
-      channel.send(nil)
-    rescue ex
-      channel.send(nil)
+    (start..finish).each do |port|
+        begin
+            sock = Socket.tcp(Socket::Family::INET)
+            sock.connect(ip, port)
+            puts("•  Port open on interface #{ip}: #{port}\n")
+            channel.send(nil)
+        rescue ex
+            channel.send(nil)
+        end
     end
-  end
 end

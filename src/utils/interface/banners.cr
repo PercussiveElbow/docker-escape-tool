@@ -1,4 +1,5 @@
 
+## Leet logo for all the haxx0rz
 def logo
     puts %q{
 8888888b.                 888                     
@@ -71,6 +72,7 @@ def section_banner_red(text)
     puts("================================================")
 end
 
+## Funky logic to generate banners at consistent size
 def generate_banner_string(text)
     length = 48 - " #{text} ".size()
     pre = "="*((length/2).to_i)
@@ -78,5 +80,5 @@ def generate_banner_string(text)
     if (length % 2) != 0
         post += "="
     end
-    return pre + " #{text} " + post
+    pre + " #{text} " + post
 end

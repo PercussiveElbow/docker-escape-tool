@@ -1,25 +1,27 @@
 
+## Iterate through each container check.
+## Return true if at least one method check indicates we're in a container.
 def in_container?
-  section_banner("Check if we're in a container")
-  container=false
+    section_banner("Check if we're in a container")
+    container=false
 
-  checks = [] of Bool
-  checks << docker_env_init_file_present?
-  checks << docker_in_cgroups?
-  checks << processes_like_docker?
-  checks << hardware_processes_present?
+    checks = [] of Bool
+    checks << docker_env_init_file_present?
+    checks << docker_in_cgroups?
+    checks << processes_like_docker?
+    checks << hardware_processes_present?
 
-  checks.each do |check|
-    if check
-      container=true
-      break
+    checks.each do |check|
+        if check
+            container=true
+            break
+        end
     end
-  end
-  
-  if container
-    section_banner_green("We're in a container")
-  else
-    section_banner_red("We're not in a container")
-  end
-  container
+
+    if container
+        section_banner_green("We're in a container")
+    else
+        section_banner_red("We're not in a container")
+    end
+    container
 end

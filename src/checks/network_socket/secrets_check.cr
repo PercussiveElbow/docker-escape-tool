@@ -1,4 +1,6 @@
 
+## List the Docker secrets
+## TODO: Unused currently. Replace this with the Docker Crystal client.
 def dump_docker_secrets(ip)
     section_banner_green("Dump Docker Secrets")
     begin 
@@ -10,6 +12,6 @@ def dump_docker_secrets(ip)
             raise("Non 200 response on Docker Secrets request \n#{resp.body}")
         end
     rescue e
-      puts(e)
+        puts(e)
     end
 end

