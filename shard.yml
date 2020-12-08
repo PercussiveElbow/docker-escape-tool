@@ -1,5 +1,5 @@
 name: docker-escape-tool
-version: 0.2.1
+version: 0.2.2
 
 authors:
   - mil0 (mil0.io)
@@ -15,7 +15,6 @@ dependencies:
   net_sample:
     github: PercussiveElbow/net_sample.cr
     branch: master
-      
 # development_dependencies:
 #   ameba:
 #     github: crystal-ameba/ameba
