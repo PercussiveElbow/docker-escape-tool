@@ -12,5 +12,5 @@ COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 RUN useradd -ms /bin/bash notroot
 RUN ln -s /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem
 RUN chown -R notroot:notroot /escape
-USER notroot
+# USER notroot
 ENTRYPOINT ./docker-escape auto 
