@@ -1,8 +1,6 @@
 require "spec"
 require "../../../src/checks/capability/capability_check"
 
-# require "mocks/spec"
-
 describe "Capability Parser Tests" do
   describe "It should return valid caps 1" do
     test_cap = "00000000a80425fb"
@@ -11,7 +9,6 @@ describe "Capability Parser Tests" do
     "CAP_KILL", "CAP_SETGID", "CAP_SETUID", "CAP_SETPCAP", "CAP_NET_BIND_SERVICE",
     "CAP_NET_RAW", "CAP_SYS_CHROOT", "CAP_MKNOD", "CAP_AUDIT_WRITE", "CAP_SETFCAP",
     "CAP_MAC_OVERRIDE", "CAP_MAC_ADMIN", "CAP_WAKE_ALARM", "CAP_BLOCK_SUSPEND", "CAP_AUDIT_READ"]
-
   end
 
   describe "It should return valid caps 2" do

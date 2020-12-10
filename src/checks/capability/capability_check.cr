@@ -41,8 +41,9 @@ CAP_CONSTANTS = [
     "CAP_AUDIT_READ",       
 ]
 
+
 def capability_check
-    section_banner("Checking Capabilities")
+    section_banner("Capabilities Check")
     puts("==> Checking avaliable capabilities.")
     cap_string = capability_load()
     capability_parse(cap_string)
@@ -69,8 +70,8 @@ def capability_parse(cap_string)
 end
 
 def capability_load
-    if File.exists?("/proc/self/status")
-        self_proc_status = File.new("/proc/self/status").gets_to_end
+    if File.exists?("/proc/1/status")
+        self_proc_status = File.new("/proc/1/status").gets_to_end
         puts(self_proc_status)
 
         self_proc_status_contents =  self_proc_status.split("\n")
@@ -98,7 +99,7 @@ def capability_load
                 end
             end
         end
-        if cap_inh 
+        if cap_inh
             return cap_inh
         end
     else

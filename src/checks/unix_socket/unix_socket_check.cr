@@ -1,4 +1,6 @@
 
+## Checks for the Docker Unix socket in the default location
+## Returns true if found 
 def unix_socket_present?
     present=File.exists?("/var/run/docker.sock")
     if present

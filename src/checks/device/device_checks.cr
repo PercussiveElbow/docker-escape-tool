@@ -1,6 +1,7 @@
 
+## Iterate through each device, check for block storage devices
 def device_check
-    device_check_banner()
+    section_banner("Mounted Device Check")
     puts("==> Checking avaliable devices.")
     storage_device_found = false
     dev_files = Dir.new("/dev")
@@ -13,13 +14,7 @@ def device_check
             end
         end
     end
-    puts("•  No storage devices found") if !storage_device_found
-    puts("==> Finished checking avaliable devices.")
-    return storage_device_found
+    puts("•  No mounted storage devices found") if !storage_device_found
+    section_banner("Mounted Device Check Done.")
+    storage_device_found
 end
-
-def device_check_banner
-    puts("\n================================================")
-    puts("============= Mounted Device Check  ============")
-    puts("================================================")
-  end
