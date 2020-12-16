@@ -99,7 +99,7 @@ def capability_load
                 end
             end
         end
-        if cap_inh
+        if cap_inh && cap_inh != "0000000000000000"
             return cap_inh
         end
     else
