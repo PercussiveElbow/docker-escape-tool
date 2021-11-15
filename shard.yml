@@ -20,6 +20,6 @@ dependencies:
 #     github: crystal-ameba/ameba
 #     version: ~> 0.13.0
 
-crystal: 1.0.0 #targeting 1.0/nightly 
+crystal: 1.2.2 # targeting latest stable 
 
 license: MIT
