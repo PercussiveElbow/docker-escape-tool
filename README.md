@@ -28,10 +28,7 @@ Additionally, if the tool will conduct a quick port scan of available interfaces
 
 ## Building
 
-Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself using the supplied Dockerfile using Crystal nightly on Alpine. 
-
-**Please note** 
-Due to some underlying stdlib changes this tool relies on, it will *not compile on Crystal 0.35.1 (current stable version)* and instead requires nightly Crystal to compile. Once these changes arrive in a Crystal stable release I will update this. 
+Use a prebuilt binary from [Releases]("https://github.com/PercussiveElbow/docker-escape-tool/releases") or compile yourself using the supplied Dockerfile using latest Crystal on Alpine.
 
 ```
 shards install
