@@ -1,4 +1,4 @@
-FROM crystallang/crystal:nightly-alpine-build AS builder
+FROM crystallang/crystal:1.3.2-alpine-build AS builder
 RUN apk update && apk upgrade && apk --no-cache add ca-certificates
 COPY ./ /app
 WORKDIR /app
